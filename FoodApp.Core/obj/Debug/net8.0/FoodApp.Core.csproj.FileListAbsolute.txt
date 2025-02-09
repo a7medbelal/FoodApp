@@ -1,0 +1,13 @@
+F:\Foodapp\FoodApp.Core\bin\Debug\net8.0\FoodApp.Core.deps.json
+F:\Foodapp\FoodApp.Core\bin\Debug\net8.0\FoodApp.Core.dll
+F:\Foodapp\FoodApp.Core\bin\Debug\net8.0\FoodApp.Core.pdb
+F:\Foodapp\FoodApp.Core\obj\Debug\net8.0\FoodApp.Core.csproj.AssemblyReference.cache
+F:\Foodapp\FoodApp.Core\obj\Debug\net8.0\FoodApp.Core.GeneratedMSBuildEditorConfig.editorconfig
+F:\Foodapp\FoodApp.Core\obj\Debug\net8.0\FoodApp.Core.AssemblyInfoInputs.cache
+F:\Foodapp\FoodApp.Core\obj\Debug\net8.0\FoodApp.Core.AssemblyInfo.cs
+F:\Foodapp\FoodApp.Core\obj\Debug\net8.0\FoodApp.Core.csproj.CoreCompileInputs.cache
+F:\Foodapp\FoodApp.Core\obj\Debug\net8.0\FoodApp.Core.sourcelink.json
+F:\Foodapp\FoodApp.Core\obj\Debug\net8.0\FoodApp.Core.dll
+F:\Foodapp\FoodApp.Core\obj\Debug\net8.0\refint\FoodApp.Core.dll
+F:\Foodapp\FoodApp.Core\obj\Debug\net8.0\FoodApp.Core.pdb
+F:\Foodapp\FoodApp.Core\obj\Debug\net8.0\ref\FoodApp.Core.dll
