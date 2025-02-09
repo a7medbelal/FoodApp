@@ -12,6 +12,7 @@ namespace FoodApp.Core.interfaces
         Task<ResponsiveView<bool>> ResetPassword(ResetPasswordModel model);
         Task<ResponsiveView<string>> GetUserIdFromToken();
         Task<ResponsiveView<bool>> EmailConfirmtion(string token);
+        Task<ResponsiveView<AuthModel>> ChangeRole(string id); 
 
     }
 }

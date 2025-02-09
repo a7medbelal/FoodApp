@@ -26,7 +26,6 @@
 
        //for Users
        ConfirmEmail=200,
-
-
+        ChangeRole = 201,
     }
 }

@@ -19,6 +19,8 @@ using Microsoft.EntityFrameworkCore;
 using FoodApp.Core.interfaces;
 using FoodApp.Services.MailService;
 using FoodApp.Core;
+using System.Net.WebSockets;
+using System.Reflection.Metadata.Ecma335;
 
 
 namespace FoodApp.Services
@@ -207,6 +209,25 @@ namespace FoodApp.Services
             return !confirmEmail.Succeeded ? 
                 new FailerResView<bool>(Errorcode.Mailerror, "somthing happen on confirmation ") :
                 new SuccessResView<bool>(true, "email confirmation sussfulay ");  
+        }
+
+
+        public async Task<ResponsiveView<AuthModel>> ChangeRole(string id)
+        {
+            var UserExist = await userManager.FindByIdAsync(id);
+            
+            if(UserExist is null) return new FailerResView<AuthModel>(Errorcode.usersnotExits, "there is no user with id ");
+
+            var role = UserExist.roles;
+            role=Role.Admin;
+            await userManager.UpdateAsync(UserExist);
+
+            var newToken =  await CreateJwtToken(UserExist , role);
+
+
+            return new SuccessResView<AuthModel>(new AuthModel { ExpiresOn = newToken.ValidTo, Token = new JwtSecurityTokenHandler().WriteToken(newToken)}); 
+
+
         }
 
     }

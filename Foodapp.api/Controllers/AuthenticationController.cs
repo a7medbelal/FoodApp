@@ -6,6 +6,7 @@ using FoodApp.Core.ViewModle.authVIewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography.Xml;
 
@@ -13,11 +14,11 @@ namespace FoodApp.Core.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class authenController : ControllerBase
+    public class AuthenticationController : ControllerBase
     {
         private readonly IAuthenticationsService authenticationService; 
 
-        public authenController(IAuthenticationsService authenticationService)
+        public AuthenticationController(IAuthenticationsService authenticationService)
         {
              this.authenticationService = authenticationService;
         }
@@ -55,7 +56,9 @@ namespace FoodApp.Core.Controllers
         {
             if (string.IsNullOrEmpty(email)) return BadRequest("ples enter your email ");
 
-            var response = await  authenticationService.ForgetPassword(email); 
+            var response = await  authenticationService.ForgetPassword(email);
+
+            if (!response.IsSuccess) return BadRequest(response.Massage);
 
             return Ok(response);
 
@@ -65,7 +68,8 @@ namespace FoodApp.Core.Controllers
         {
             if (string.IsNullOrEmpty(model.Token)) return BadRequest("ples check the token correctness");
 
-            var response = await authenticationService.ResetPassword(model); 
+            var response = await authenticationService.ResetPassword(model);
+            if (!response.IsSuccess) return BadRequest(response.Massage);
 
 
             return Ok(response);
@@ -83,8 +87,25 @@ namespace FoodApp.Core.Controllers
 
 
             var response =await  authenticationService.EmailConfirmtion(OTP);
+
+            if (!response.IsSuccess) return BadRequest(response.Massage);  
             
             return Ok(response);
+        }
+
+
+        [HttpPut("ChangeRole")]
+        [Authorize]
+        [TypeFilter(typeof(CoustemAurhorizeFilter), Arguments = new object[] { features.ChangeRole })]
+
+        public async Task<IActionResult> ChangeRole(string id)
+        {
+            if (string.IsNullOrEmpty(id)) return BadRequest("ples put the id correct"); 
+            var response = await authenticationService.ChangeRole(id);  
+
+
+            if(!response.IsSuccess) return BadRequest(response.Massage);
+            return Ok(new { token = response.data.Token, role = response.data.Roles, expiresdate = response.data.ExpiresOn });
         }
 
     }

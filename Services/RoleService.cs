@@ -21,7 +21,7 @@ namespace FoodApp.Services
         }
         public ResponsiveView<bool> addRole(RoleFeatureViewModel roleFeature)
         {
-            if (roleFeature == null) return new FailerResView<bool>(Errorcode.emptyData, "ples put data ");
+            if (roleFeature == null) return new FailerResView<bool>(Errorcode.emptyData, "InvialdInput");
 
             var RoleFeature = roleFeature.MapTo<RoleFeature>();
 
